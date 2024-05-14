@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Board{% endblock %}
+
+{% block body %}
+    <h1>Board {{ board.name }}</h1>
+
+    <table>
+        <div class="list-column">
+            {% for step in steps %}
+                <div class="columnn">
+                    <p>{{ step.name }}</p>
+                
+                    <div class="listCard">
+                        {% for card in step.cards %}
+
+                            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-body">
+                                    {{card.description}}
+                                    <button type="button" class="btn btn-dark"><a  href="{{ path('app_card_edit', {'id': card.id}) }}">Editer</a></button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <a href="{{ path('app_card_new', {'idStep': step.id}) }}">Ajouter une card</a>
+                    </div>
+                    
+                    <button type="button" class="btn btn-primary"><a href="{{ path('app_step_edit', {'id': step.id}) }}">Edit column</a></button>
+                        
+                    
+                </div>
+        
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+        </div>
+    </table>
+    
+    <a href="{{ path('app_step_new', {'board_id' : board.id}) }}" style="margin-right:34px">Nouvelle colonne</a>
+    <a href="{{ path('app_board_index') }}">Retour au home</a>
+
+    {{ include('board/_delete_form.html.twig') }}
+{% endblock %}

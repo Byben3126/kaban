@@ -1,0 +1,18 @@
+.list-column {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.list-column .columnn {
+    width: 300px !important;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit !important;;
+}
